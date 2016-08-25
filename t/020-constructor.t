@@ -15,6 +15,10 @@ lives-ok { $obj = Medium::API.new(:$integration-token) }, "new Medium::API";
 
 isa-ok $obj, Medium::API, "and (of course it's the right thing.)";
 
+is $obj.integration-token, $integration-token, "got back right integration token";
+
+
+
 
 
 
