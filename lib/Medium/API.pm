@@ -1,10 +1,25 @@
 use v6.c;
 
 use HTTP::UserAgent;
+use JSON::Name;
 use JSON::Class;
 
 class Medium::API {
     has Str $.integration-token;
 
+    
+
+    class Post does JSON::Class {
+        subset PublishStatus of Str where "public"|"draft"|"unlisted";
+        has PublishStatus $.publish-status is json-name('publishStatus') = "public";
+        has Str $.title is required;
+        subset ContentFormat of Str where "html"|"markdown";
+        has ContentFormat $.content-format is json-name('contentFormat');
+        has Str $.content;
+        has     @.tags;
+        has Str $.canonical-url  is json-name('canonicalUrl');
+        subset Licence of Str where "all-rights-reserved"|"cc-40-by"|"cc-40-by-sa"|"cc-40-by-nd"|"cc-40-by-nc"|"cc-40-by-nc-nd"|"cc-40-by-nc-sa"|"cc-40-zero"|"public-domain";
+        has Licence $.license = "all-rights-reserved";
+    }
 }
 # vim: expandtab shiftwidth=4 ft=perl6
