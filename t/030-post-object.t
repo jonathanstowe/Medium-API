@@ -21,13 +21,14 @@ my $obj;
 
 lives-ok { $obj = Medium::API::Post.from-json($json) }, "a Medium::API::Post from json";
 
-diag $obj.perl;
-
 is $obj.publish-status, "public", "publish status correct";
 is $obj.content-format, "html", "content-format";
 is $obj.content, "<h1>Liverpool FC</h1><p>You’ll never walk alone.</p>", "content";
 is $obj.canonical-url, "http://jamietalbot.com/posts/liverpool-fc", "canonical-url";
 is $obj.license, "all-rights-reserved", "license (correct default)";
+is-deeply $obj.tags, ["football", "sport", "Liverpool"], "tags are the same";
+
+
 
 
 done-testing;
