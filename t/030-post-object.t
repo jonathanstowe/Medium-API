@@ -28,6 +28,9 @@ is $obj.canonical-url, "http://jamietalbot.com/posts/liverpool-fc", "canonical-u
 is $obj.license, "all-rights-reserved", "license (correct default)";
 is-deeply $obj.tags, ["football", "sport", "Liverpool"], "tags are the same";
 
+my $out;
+
+lives-ok { $out = $obj.to-json }, "to-json";
 
 
 
