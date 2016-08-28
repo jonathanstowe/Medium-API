@@ -17,7 +17,7 @@ class Medium::API {
         has ContentFormat $.content-format is json-name('contentFormat') is required;
         has Str $.content is required;
         has     @.tags;
-        has Str $.canonical-url  is json-name('canonicalUrl');
+        has Str $.canonical-url  is json-name('canonicalUrl') is json-skip-null;
         subset Licence of Str where "all-rights-reserved"|"cc-40-by"|"cc-40-by-sa"|"cc-40-by-nd"|"cc-40-by-nc"|"cc-40-by-nc-nd"|"cc-40-by-nc-sa"|"cc-40-zero"|"public-domain";
         has Licence $.license = "all-rights-reserved";
     }
