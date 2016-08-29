@@ -21,17 +21,26 @@ my $obj;
 
 lives-ok { $obj = Medium::API::Post.from-json($json) }, "a Medium::API::Post from json";
 
+is $obj.title, "Liverpool FC", "correct title";
 is $obj.publish-status, "public", "publish status correct";
 is $obj.content-format, "html", "content-format";
 is $obj.content, "<h1>Liverpool FC</h1><p>You’ll never walk alone.</p>", "content";
 is $obj.canonical-url, "http://jamietalbot.com/posts/liverpool-fc", "canonical-url";
 is $obj.license, "all-rights-reserved", "license (correct default)";
-is-deeply $obj.tags, ["football", "sport", "Liverpool"], "tags are the same";
+is-deeply [$obj.tags], ["football", "sport", "Liverpool"], "tags are the same";
 
 my $out;
 
 lives-ok { $out = $obj.to-json }, "to-json";
 
+lives-ok { $obj = Medium::API::Post.new(title => "test title", content => "<h1>Foo</h1>", content-format => "html") }, "new from scratch";
+is $obj.title, "test title", "correct title";
+is $obj.publish-status, "public", "publish status correct default";
+is $obj.content-format, "html", "content-format";
+is $obj.content, "<h1>Foo</h1>", "content";
+is $obj.license, "all-rights-reserved", "license (correct default)";
+
+lives-ok { $out = $obj.to-json }, "to-json";
 
 
 done-testing;
