@@ -33,15 +33,19 @@ my $out;
 
 lives-ok { $out = $obj.to-json }, "to-json";
 
-lives-ok { $obj = Medium::API::Post.new(title => "test title", content => "<h1>Foo</h1>", content-format => "html") }, "new from scratch";
+lives-ok { $obj = Medium::API::Post.new(title => "test title", content => "<h1>Foo</h1>", content-format => "html", tags => <one two three>) }, "new from scratch";
 is $obj.title, "test title", "correct title";
 is $obj.publish-status, "public", "publish status correct default";
 is $obj.content-format, "html", "content-format";
 is $obj.content, "<h1>Foo</h1>", "content";
 is $obj.license, "all-rights-reserved", "license (correct default)";
+is-deeply [$obj.tags], [<one two three>], "tags were set right";
 
 lives-ok { $out = $obj.to-json }, "to-json";
 
+throws-like { $obj = Medium::API::Post.new(title => "zz" x 101, content => "<h1>Foo</h1>", content-format => "html") }, X::TypeCheck::Assignment, "title constraint";
+
+throws-like { $obj = Medium::API::Post.new(title => "text title" , content => "<h1>Foo</h1>", content-format => "html", tags => [ "a" x 30]) }, X::TypeCheck::Assignment, "tags constraint";
 
 done-testing;
 # vim: expandtab shiftwidth=4 ft=perl6
