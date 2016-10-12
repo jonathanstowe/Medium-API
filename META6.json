@@ -1,0 +1,46 @@
+{
+  "name": "Medium::API",
+  "source-url": null,
+  "support": {
+    "source": ""
+  },
+  "perl": "6.c",
+  "resources": [
+    
+  ],
+  "build-depends": [
+    
+  ],
+  "excludes": {
+    
+  },
+  "auth": "github:jonathanstowe",
+  "superseded-by": {
+    
+  },
+  "provides": {
+    
+  },
+  "depends": [
+    
+  ],
+  "tags": [
+    
+  ],
+  "license": "perl",
+  "test-depends": [
+    
+  ],
+  "description": null,
+  "emulates": {
+    
+  },
+  "version": "0.0.1",
+  "meta6": "0",
+  "supersedes": {
+    
+  },
+  "authors": [
+    "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
+  ]
+}
